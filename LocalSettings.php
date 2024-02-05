@@ -133,5 +133,4 @@ $wgDefaultSkin = 'vector'; // Optional to set skin as default
 
 # End of automatically generated settings.
 # Add more configuration options below.
-$wgShowExceptionDetails = true;
 
