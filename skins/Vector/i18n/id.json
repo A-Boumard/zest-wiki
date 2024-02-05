@@ -12,9 +12,9 @@
 			"Naufal06",
 			"Rachmat04",
 			"Rex",
+			"Robifr",
 			"Veracious",
-			"William Surya Permana",
-			"Robifr"
+			"William Surya Permana"
 		]
 	},
 	"skinname-vector": "Vektor",
@@ -48,6 +48,14 @@
 	"vector-jumptosearch": "Loncat ke pencarian",
 	"vector-jumptocontent": "Lompat ke isi",
 	"vector-more-actions": "Lainnya",
+	"vector-client-prefs-label": "Tampilan",
+	"vector-feature-limited-width-name": "Lebar",
+	"vector-feature-custom-font-size-name": "Teks",
+	"vector-feature-limited-width-0-label": "Lebar",
+	"vector-feature-limited-width-1-label": "Standar",
+	"vector-feature-custom-font-size-0-label": "Kecil",
+	"vector-feature-custom-font-size-1-label": "Standar",
+	"vector-feature-custom-font-size-2-label": "Besar",
 	"vector-search-loader": "Memuat saran pencarian",
 	"vector-searchsuggest-containing": "Cari halaman yang berisi <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
 	"vector-intro-page": "Help:Pengantar",
@@ -78,5 +86,8 @@
 	"empty-language-selector-body": "Konten halaman tidak didukung dalam bahasa lain.",
 	"vector-toc-unpinned-popup": "Daftar isi telah dipindahkan ke sini.",
 	"vector-page-tools-unpinned-popup": "Menu perkakas telah dipindahkan ke sini.",
-	"vector-main-menu-unpinned-popup": "Menu utama telah dipindahkan ke sini."
+	"vector-main-menu-unpinned-popup": "Menu utama telah dipindahkan ke sini.",
+	"vector-client-prefs-unpinned-popup": "Menu tampilan telah dipindahkan ke sini.",
+	"vector-2022-beta-preview-label": "Aksesibilitas untuk Membaca (Vektor 2022)",
+	"vector-2022-beta-preview-description": "Dapatkan akses awal ke fitur aksesibilitas membaca yang baru, seperti penyempurnaan tipografi dan mode malam."
 }

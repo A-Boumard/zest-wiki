@@ -41,8 +41,11 @@ pre,
 	// h1's can exist outside of `.mw-body-content` so some heading styles
 	// therefore need to be defined in `.mw-body` as well.
 	& h1,
+	& .mw-heading1,
 	&-content h1,
-	&-content h2 {
+	&-content .mw-heading1,
+	&-content h2,
+	&-content .mw-heading2 {
 		margin-bottom: 0.25em;
 		padding: 0;
 		font-family: @font-family-serif;
@@ -68,45 +71,25 @@ pre,
 	}
 
 	& h1,
-	&-content h1 {
+	& .mw-heading1,
+	&-content h1,
+	&-content .mw-heading1 {
 		font-size: @font-size-heading-1;
 	}
-}
 
-// T335625 - Move siteSub into common.less to prevent it from being feature-flagged
-// and overriding on-wiki modifications.
-#siteSub {
-	// By default the sitesub (i.e. tagline) is hidden as it was hidden in Vector legacy but site styles can reveal.
-	display: none;
-}
-
-.vector-body {
-	font-size: @font-size-base;
-	// Support IE 9-11, Trident cuts values 2 digits after decimal point.
-	// `calc` enables to set correct calculation in place again. See T102364.
-	font-size: @font-size-base--trident-hack;
-	line-height: @line-height-base;
-
-	.vector-feature-custom-font-size-clientpref-enabled & {
-		font-size: 16px;
-	}
-
-	#siteSub {
-		font-size: 12.8px; // T311421
-	}
-
-	h1 {
-		margin-top: 1em;
-	}
-
+	.mw-heading2,
 	h2 {
 		margin-top: 1em;
 		font-size: @font-size-heading-2;
 	}
 
+	.mw-heading3,
 	h3,
+	.mw-heading4,
 	h4,
+	.mw-heading5,
 	h5,
+	.mw-heading6,
 	h6 {
 		margin-top: 0.3em;
 		margin-bottom: 0;
@@ -114,28 +97,29 @@ pre,
 		line-height: @line-height-base;
 	}
 
+	.mw-heading3,
 	h3 {
 		font-size: @font-size-heading-3;
 	}
 
+	.mw-heading3,
 	h3,
+	.mw-heading4,
 	h4 {
 		font-weight: bold;
 	}
 
+	.mw-heading4,
 	h4,
+	.mw-heading5,
 	h5,
+	.mw-heading6,
 	h6 {
 		font-size: @font-size-reset; // Reset.
 	}
 
-	.toc h2 {
-		font-family: @font-family-sans;
-		font-size: @font-size-reset; // Reset.
-	}
-
 	p {
-		margin: 0.5em 0;
+		margin: 0.5em 0 1em 0;
 	}
 
 	blockquote {
@@ -151,6 +135,19 @@ pre,
 			margin-bottom: 0;
 		}
 	}
+}
+
+// T335625 - Move siteSub into common.less to prevent it from being feature-flagged
+// and overriding on-wiki modifications.
+#siteSub {
+	font-size: unit( @font-size-small, rem ); // T311421
+	// By default the sitesub (i.e. tagline) is hidden as it was hidden in Vector legacy but site styles can reveal.
+	display: none;
+}
+
+.vector-body {
+	font-size: var( --font-size-medium );
+	line-height: var( --line-height-medium );
 }
 
 // External links

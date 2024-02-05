@@ -11,9 +11,9 @@
 			"Kaoavi",
 			"Octahedron80",
 			"Patsagorn Y.",
+			"RidJasper",
 			"Trisorn Triboon",
-			"Woraponboonkerd",
-			"RidJasper"
+			"Woraponboonkerd"
 		]
 	},
 	"skinname-vector": "เวกเตอร์แบบเก่า (2553)",
@@ -48,6 +48,19 @@
 	"vector-jumptosearch": "ไปยังการค้นหา",
 	"vector-jumptocontent": "ข้ามไปเนื้อหา",
 	"vector-more-actions": "เพิ่มเติม",
+	"vector-client-prefs-label": "ลักษณะ",
+	"vector-feature-limited-width-name": "ความกว้าง",
+	"vector-feature-custom-font-size-name": "ขนาดอักษร",
+	"vector-feature-limited-width-0-label": "กว้าง",
+	"vector-feature-limited-width-1-label": "ปกติ",
+	"vector-feature-custom-font-size-0-label": "เล็ก",
+	"vector-feature-custom-font-size-1-label": "ปกติ",
+	"vector-feature-custom-font-size-2-label": "ใหญ่",
+	"skin-night-mode-name": "สี",
+	"skin-night-mode-description": "ลดแสงที่ออกมาจากหน้าจออุปกรณ์",
+	"skin-night-mode-0-label": "กลางวัน",
+	"skin-night-mode-1-label": "กลางคืน",
+	"skin-night-mode-2-label": "อัตโนมัติ",
 	"vector-search-loader": "กำลังโหลดคำแนะนำการค้นหา",
 	"vector-searchsuggest-containing": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
 	"vector-intro-page": "Help:บทนำ",
@@ -73,7 +86,8 @@
 	"vector-prefs-limited-width": "เปิดใช้งานโหมดจำกัดความกว้าง",
 	"vector-prefs-limited-width-help": "เปิดใช้งานโหมดจำกัดความกว้างสำหรับประสบการณ์อ่านที่ดีขึ้น",
 	"empty-language-selector-body": "ไม่รองรับเนื้อหาของหน้าในภาษาอื่น",
-	"vector-toc-unpinned-popup": "ย้ายเมนูสารบัญมาที่นี่แล้ว",
-	"vector-page-tools-unpinned-popup": "ย้ายเมนูเครื่องมือมาที่นี่แล้ว",
-	"vector-main-menu-unpinned-popup": "ย้ายเมนูหลักมาที่นี่แล้ว"
+	"vector-toc-unpinned-popup": "ย้ายเมนูสารบัญมาที่นี่",
+	"vector-page-tools-unpinned-popup": "ย้ายเมนูเครื่องมือมาที่นี่",
+	"vector-main-menu-unpinned-popup": "ย้ายเมนูหลักมาที่นี่",
+	"vector-client-prefs-unpinned-popup": "ย้ายเมนูลักษณะมาที่นี่"
 }

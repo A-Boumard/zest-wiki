@@ -5,6 +5,7 @@ namespace MediaWiki\Skins\Vector;
 use ExtensionRegistry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Skins\Vector\Components\VectorComponentButton;
+use MediaWiki\Skins\Vector\Components\VectorComponentClientPrefs;
 use MediaWiki\Skins\Vector\Components\VectorComponentDropdown;
 use MediaWiki\Skins\Vector\Components\VectorComponentLanguageDropdown;
 use MediaWiki\Skins\Vector\Components\VectorComponentMainMenu;
@@ -56,41 +57,13 @@ class SkinVector22 extends SkinMustache {
 	}
 
 	/**
-	 * Provide styles required to present the server rendered page in this skin. Additional styles
-	 * may be loaded dynamically by the client.
-	 *
-	 * Any styles returned by this method are loaded on the critical rendering path as linked
-	 * stylesheets. I.e., they are required to load on the client before first paint.
-	 *
-	 * @return array
-	 */
-	public function getDefaultModules(): array {
-		$modules = parent::getDefaultModules();
-		$featureManager = VectorServices::getFeatureManager();
-		$zebraUpdate = $featureManager->isFeatureEnabled(
-			Constants::FEATURE_ZEBRA_DESIGN
-		);
-
-		if ( $zebraUpdate ) {
-			$modules['styles']['skin'][] = 'skins.vector.zebra.styles';
-		}
-
-		if ( $featureManager->isFeatureEnabled( Constants::FEATURE_TYPOGRAPHY_SURVEY ) ) {
-			$modules[] = 'skins.vector.typographySurvey';
-		}
-
-		return $modules;
-	}
-
-	/**
 	 * Whether or not toc data is available
 	 *
+	 * @param array $parentData Template data
 	 * @return bool
 	 */
-	private function isTocAvailable(): bool {
-		$parentData = parent::getTemplateData();
-		$tocData = $parentData['data-toc'];
-		return !empty( $tocData ) && !empty( $tocData[ 'array-sections' ] );
+	private function isTocAvailable( array $parentData ): bool {
+		return !empty( $parentData['data-toc'][ 'array-sections' ] );
 	}
 
 	/**
@@ -101,7 +74,7 @@ class SkinVector22 extends SkinMustache {
 	 * @return bool
 	 */
 	private function canHaveLanguages(): bool {
-		$action = $this->getContext()->getActionName();
+		$action = $this->getActionName();
 
 		// FIXME: This logic should be moved into the ULS extension or core given the button is hidden,
 		// it should not be rendered, short term fix for T328996.
@@ -111,7 +84,7 @@ class SkinVector22 extends SkinMustache {
 
 		$title = $this->getTitle();
 		// Defensive programming - if a special page has added languages explicitly, best to show it.
-		if ( $title && $title->isSpecialPage() && empty( $this->getLanguagesCached() ) ) {
+		if ( $title && $title->isSpecialPage() && $this->getLanguagesCached() === [] ) {
 			return false;
 		}
 		return true;
@@ -129,9 +102,9 @@ class SkinVector22 extends SkinMustache {
 		$html = '';
 		foreach ( $views as $i => $view ) {
 			if ( $view['id'] === 'ca-addsection' ) {
-					array_splice( $views, $i, 1 );
-					$hasAddTopicButton = true;
-					continue;
+				array_splice( $views, $i, 1 );
+				$hasAddTopicButton = true;
+				continue;
 			}
 			$html .= $view['html-item'];
 		}
@@ -152,7 +125,8 @@ class SkinVector22 extends SkinMustache {
 		$inContent = $featureManager->isFeatureEnabled(
 			Constants::FEATURE_LANGUAGE_IN_HEADER
 		);
-		$isMainPage = $this->getTitle() ? $this->getTitle()->isMainPage() : false;
+		$title = $this->getTitle();
+		$isMainPage = $title ? $title->isMainPage() : false;
 
 		switch ( $location ) {
 			case 'top':
@@ -200,6 +174,23 @@ class SkinVector22 extends SkinMustache {
 	}
 
 	/**
+	 * Check whether Visual Editor Tab Position is first
+	 *
+	 * @param array $dataViews
+	 * @return bool
+	 */
+	final protected function isVisualEditorTabPositionFirst( $dataViews ): bool {
+		$names = [ 've-edit', 'edit' ];
+		// find if under key 'name' 've-edit' or 'edit' is the before item in the array
+		for ( $i = 0; $i < count( $dataViews[ 'array-items' ] ); $i++ ) {
+			if ( in_array( $dataViews[ 'array-items' ][ $i ][ 'name' ], $names ) ) {
+				return $dataViews[ 'array-items' ][ $i ][ 'name' ] === $names[ 0 ];
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Show the ULS button if it's modern Vector, languages in header is enabled,
 	 * the ULS extension is enabled, and we are on a subect page. Hide it otherwise.
 	 * There is no point in showing the language button if ULS extension is unavailable
@@ -219,8 +210,9 @@ class SkinVector22 extends SkinMustache {
 	 */
 	private function shouldLanguageAlertBeInSidebar(): bool {
 		$featureManager = VectorServices::getFeatureManager();
-		$isMainPage = $this->getTitle() ? $this->getTitle()->isMainPage() : false;
-		$shouldShowOnMainPage = $isMainPage && !empty( $this->getLanguagesCached() ) &&
+		$title = $this->getTitle();
+		$isMainPage = $title ? $title->isMainPage() : false;
+		$shouldShowOnMainPage = $isMainPage && $this->getLanguagesCached() !== [] &&
 			$featureManager->isFeatureEnabled( Constants::FEATURE_LANGUAGE_IN_MAIN_PAGE_HEADER );
 		return ( $this->isLanguagesInContentAt( 'top' ) && !$isMainPage && !$this->shouldHideLanguages() &&
 			$featureManager->isFeatureEnabled( Constants::FEATURE_LANGUAGE_IN_HEADER ) ) ||
@@ -256,7 +248,7 @@ class SkinVector22 extends SkinMustache {
 		$featureManager = VectorServices::getFeatureManager();
 		$original['class'] .= ' ' . implode( ' ', $featureManager->getFeatureBodyClass() );
 
-		if ( VectorServices::getFeatureManager()->isFeatureEnabled( Constants::FEATURE_STICKY_HEADER ) ) {
+		if ( $featureManager->isFeatureEnabled( Constants::FEATURE_STICKY_HEADER ) ) {
 			// T290518: Add scroll padding to root element when the sticky header is
 			// enabled. This class needs to be server rendered instead of added from
 			// JS in order to correctly handle situations where the sticky header
@@ -325,14 +317,13 @@ class SkinVector22 extends SkinMustache {
 	 * @return array
 	 */
 	public function getTemplateData(): array {
-		$featureManager = VectorServices::getFeatureManager();
 		$parentData = parent::getTemplateData();
-		$localizer = $this->getContext();
 		$parentData = $this->mergeViewOverflowIntoActions( $parentData );
 		$portlets = $parentData['data-portlets'];
 
 		$langData = $portlets['data-languages'] ?? null;
 		$config = $this->getConfig();
+		$featureManager = VectorServices::getFeatureManager();
 
 		$sidebar = $parentData[ 'data-portlets-sidebar' ];
 		$pageToolsMenu = [];
@@ -345,24 +336,25 @@ class SkinVector22 extends SkinMustache {
 		$ulsLabels = $this->getULSLabels();
 		$user = $this->getUser();
 		$localizer = $this->getContext();
+		$title = $this->getTitle();
 
 		// If the table of contents has no items, we won't output it.
 		// empty array is interpreted by Mustache as falsey.
 		$tocComponents = [];
-		$isTocAvailable = $this->isTocAvailable();
-		if ( $isTocAvailable ) {
+		if ( $this->isTocAvailable( $parentData ) ) {
 			// @phan-suppress-next-line SecurityCheck-XSS
 			$dataToc = new VectorComponentTableOfContents(
 				$parentData['data-toc'],
 				$localizer,
-				$this->getConfig(),
-				VectorServices::getFeatureManager()
+				$config,
+				$featureManager
 			);
+			$isPinned = $dataToc->isPinned();
 			$tocComponents = [
 				'data-toc' => $dataToc,
 				'data-toc-pinnable-container' => new VectorComponentPinnableContainer(
 					VectorComponentTableOfContents::ID,
-					$dataToc->isPinned()
+					$isPinned
 				),
 				'data-page-titlebar-toc-dropdown' => new VectorComponentDropdown(
 					'vector-page-titlebar-toc',
@@ -375,7 +367,7 @@ class SkinVector22 extends SkinMustache {
 				),
 				'data-page-titlebar-toc-pinnable-container' => new VectorComponentPinnableContainer(
 					'vector-page-titlebar-toc',
-					$dataToc->isPinned()
+					$isPinned
 				),
 				'data-sticky-header-toc-dropdown' => new VectorComponentDropdown(
 					'vector-sticky-header-toc',
@@ -388,7 +380,7 @@ class SkinVector22 extends SkinMustache {
 				),
 				'data-sticky-header-toc-pinnable-container' => new VectorComponentPinnableContainer(
 					'vector-sticky-header-toc',
-					$dataToc->isPinned()
+					$isPinned
 				),
 			];
 			$this->getOutput()->addHtmlClasses( 'vector-toc-available' );
@@ -398,6 +390,10 @@ class SkinVector22 extends SkinMustache {
 
 		$isRegistered = $user->isRegistered();
 		$userPage = $isRegistered ? $this->buildPersonalPageItem() : [];
+		$isClientPreferencesEnabled = $featureManager->isFeatureEnabled(
+			Constants::FEATURE_CLIENT_PREFERENCES,
+		);
+
 		$components = $tocComponents + [
 			'data-add-topic-button' => $hasAddTopicButton ? new VectorComponentButton(
 				$this->msg( [ 'vector-2022-action-addsection', 'skin-action-addsection' ] )->text(),
@@ -408,21 +404,13 @@ class SkinVector22 extends SkinMustache {
 				'quiet',
 				'progressive',
 				false,
-				$this->getTitle()->getLocalURL( 'action=edit&section=new' )
+				$title->getLocalURL( [ 'action' => 'edit', 'section' => 'new' ] )
 			) : null,
 			'data-variants' => new VectorComponentVariants(
 				$portlets['data-variants'],
-				$this->getTitle()->getPageLanguage(),
+				$title->getPageLanguage(),
 				$this->msg( 'vector-language-variant-switcher-label' )
 			),
-			'data-client-prefs' => $featureManager->isFeatureEnabled(
-					Constants::FEATURE_CLIENT_PREFERENCES,
-				) ? new VectorComponentDropdown(
-					'vector-client-prefs',
-					'Site preferences',
-					'',
-					'settings'
-				) : null,
 			'data-vector-user-links' => new VectorComponentUserLinks(
 				$localizer,
 				$user,
@@ -438,7 +426,7 @@ class SkinVector22 extends SkinMustache {
 				$langData['html-items'] ?? '',
 				$langData['html-before-portal'] ?? '',
 				$langData['html-after-portal'] ?? '',
-				$this->getTitle()
+				$title
 			) : null,
 			'data-search-box' => new VectorComponentSearchBox(
 				$parentData['data-search-box'],
@@ -457,8 +445,8 @@ class SkinVector22 extends SkinMustache {
 				count( $this->getLanguagesCached() ),
 				$portlets['data-languages'] ?? [],
 				$localizer,
-				$this->getUser(),
-				VectorServices::getFeatureManager(),
+				$user,
+				$featureManager,
 				$this,
 			),
 			'data-main-menu-dropdown' => new VectorComponentDropdown(
@@ -470,7 +458,6 @@ class SkinVector22 extends SkinMustache {
 			'data-page-tools' => new VectorComponentPageTools(
 				array_merge( [ $portlets['data-actions'] ?? [] ], $pageToolsMenu ),
 				$localizer,
-				$this->getUser(),
 				$featureManager
 			),
 			'data-page-tools-dropdown' => new VectorComponentDropdown(
@@ -478,6 +465,15 @@ class SkinVector22 extends SkinMustache {
 				$this->msg( 'toolbox' )->text(),
 				VectorComponentPageTools::ID . '-dropdown',
 			),
+			'data-client-prefs' => $isClientPreferencesEnabled ?
+				new VectorComponentClientPrefs( $localizer, $featureManager ) : null,
+			'data-client-prefs-dropdown' => $isClientPreferencesEnabled ? new VectorComponentDropdown(
+				'vector-client-prefs-dropdown',
+				$this->msg( 'vector-client-prefs-label' )->text(),
+				'',
+				// @todo: Use new theme icon (T351142)
+				'appearance'
+			) : null,
 			'data-vector-sticky-header' => $featureManager->isFeatureEnabled(
 				Constants::FEATURE_STICKY_HEADER
 			) ? new VectorComponentStickyHeader(
@@ -506,7 +502,7 @@ class SkinVector22 extends SkinMustache {
 						],
 						'quiet',
 					) : null,
-				true
+				$this->isVisualEditorTabPositionFirst( $portlets[ 'data-views' ] )
 			) : null,
 			'data-vector-settings-button' => $featureManager->isFeatureEnabled(
 				Constants::FEATURE_CLIENT_PREFERENCES,
@@ -523,6 +519,7 @@ class SkinVector22 extends SkinMustache {
 				true
 			)
 		];
+
 		foreach ( $components as $key => $component ) {
 			// Array of components or null values.
 			if ( $component ) {
@@ -531,9 +528,6 @@ class SkinVector22 extends SkinMustache {
 		}
 
 		return array_merge( $parentData, [
-			'is-zebra-enabled' => $featureManager->isFeatureEnabled(
-				Constants::FEATURE_ZEBRA_DESIGN
-			),
 			'is-language-in-content' => $this->isLanguagesInContent(),
 			'has-buttons-in-content-top' => $this->isLanguagesInContentAt( 'top' ) || $hasAddTopicButton,
 			'is-language-in-content-bottom' => $this->isLanguagesInContentAt( 'bottom' ),

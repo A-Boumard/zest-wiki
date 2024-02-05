@@ -32,6 +32,14 @@
 	"vector-jumptosearch": "Gurukira ekiserra",
 	"vector-jumptocontent": "Gurukira ebirumu",
 	"vector-more-actions": "Muno",
+	"vector-client-prefs-label": "Enzooka",
+	"vector-feature-limited-width-name": "Obugazi",
+	"vector-feature-custom-font-size-name": "Ebihandiikwa",
+	"vector-feature-limited-width-0-label": "Galihya",
+	"vector-feature-limited-width-1-label": "Obutoosa",
+	"vector-feature-custom-font-size-0-label": "Obutaito",
+	"vector-feature-custom-font-size-1-label": "Obutoosa",
+	"vector-feature-custom-font-size-2-label": "Obukooto",
 	"vector-search-loader": "Obuhanuuzi bw'okuserra nibwolekwa",
 	"vector-searchsuggest-containing": "Serra empapura eziina <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
 	"vector-intro-page": "Help:Okutaahya",
@@ -59,5 +67,11 @@
 	"vector-page-tools-nav-label": "Ebikwato by'orupapura",
 	"vector-prefs-limited-width": "Soboza omulingo gw'obugazi obutangwa",
 	"vector-prefs-limited-width-help": "Soboza omulingo gw'obugazi obutangwa habw'ensoma eyekira.",
-	"empty-language-selector-body": "Tiharoho birumu by'orupapura omu ndimi zindi."
+	"empty-language-selector-body": "Tiharoho birumu by'orupapura omu ndimi zindi.",
+	"vector-toc-unpinned-popup": "Orukarra rw'ebirumu rwihirwe hanu.",
+	"vector-page-tools-unpinned-popup": "Orukarra rw'ebikwato rwihirwe hanu.",
+	"vector-main-menu-unpinned-popup": "Orukarra rw'emirimo orukuru rwihirwe hanu.",
+	"vector-client-prefs-unpinned-popup": "Orukarra rw'enzooka rwihirwe hanu.",
+	"vector-2022-beta-preview-label": "Obutungibwa bw'Okusoma (Vekitoli 2022)",
+	"vector-2022-beta-preview-description": "Tunga kara amasobozi amahyaka g'obutungibwa bw'okusoma, nk'enkiza z'okuhandiika n'omulingo gw'itumbi."
 }

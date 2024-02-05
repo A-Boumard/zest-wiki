@@ -22,7 +22,9 @@
 
 namespace MediaWiki\Skins\Vector\FeatureManagement;
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Skins\Vector\FeatureManagement\Requirements\SimpleRequirement;
+use RequestContext;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -128,26 +130,45 @@ class FeatureManager {
 	}
 
 	/**
+	 * Gets font size user's preference value
+	 *
+	 * If user preference is not set or did not appear in config
+	 * set it to default value we go back to defualt suffix value 1
+	 * that will ensure that the feature will be enabled when requirements are met
+	 *
+	 * @return string
+	 */
+	public function getFontValueFromUserPreferenceForSuffix() {
+		$user = RequestContext::getMain()->getUser();
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		return $userOptionsLookup->getOption(
+			$user,
+			'vector-font-size'
+			// This should be the same as `preferenceKey` in clientPreferences config
+			// 'resources/skins.vector.clientPreferences/config.json'
+		);
+	}
+
+	/**
 	 * Return a list of classes that should be added to the body tag
 	 *
 	 * @return array
 	 */
 	public function getFeatureBodyClass() {
-		$featureManager = $this;
-		return array_map( static function ( $featureName ) use ( $featureManager ) {
+		return array_map( function ( $featureName ) {
 			// switch to lower case and switch from camel case to hyphens
 			$featureClass = ltrim( strtolower( preg_replace( '/[A-Z]([A-Z](?![a-z]))*/', '-$0', $featureName ) ), '-' );
 
 			// Client side preferences
 			switch ( $featureClass ) {
-				case 'toc-pinned':
-				case 'limited-width':
-					$suffixEnabled = 'clientpref-1';
+				case 'custom-font-size':
+					$suffixEnabled = 'clientpref-' . $this->getFontValueFromUserPreferenceForSuffix();
 					$suffixDisabled = 'clientpref-0';
 					break;
-				case 'custom-font-size':
-					$suffixEnabled = 'clientpref-enabled';
-					$suffixDisabled = 'clientpref-disabled';
+				case 'limited-width':
+				case 'toc-pinned':
+					$suffixEnabled = 'clientpref-1';
+					$suffixDisabled = 'clientpref-0';
 					break;
 				default:
 					// FIXME: Eventually this should not be necessary.
@@ -156,7 +177,7 @@ class FeatureManager {
 					break;
 			}
 			$prefix = 'vector-feature-' . $featureClass . '-';
-			return $featureManager->isFeatureEnabled( $featureName ) ?
+			return $this->isFeatureEnabled( $featureName ) ?
 				$prefix . $suffixEnabled : $prefix . $suffixDisabled;
 		}, array_keys( $this->features ) );
 	}

@@ -4,10 +4,10 @@
 			"Alsandro",
 			"Amire80",
 			"David1010",
+			"Tar Lócesilion",
 			"გიორგიმელა",
 			"Გიო ოქრო",
-			"Იო ოქრო",
-			"Tar Lócesilion"
+			"Იო ოქრო"
 		]
 	},
 	"skinname-vector": "ვექტორული (2010)",
@@ -43,6 +43,14 @@
 	"vector-jumptosearch": "ძიებაზე გადასვლა",
 	"vector-jumptocontent": "შინაარსზე გადასვლა",
 	"vector-more-actions": "მეტი",
+	"vector-client-prefs-label": "თემა",
+	"vector-feature-limited-width-name": "სიგანე",
+	"vector-feature-custom-font-size-name": "ტექსტი",
+	"vector-feature-limited-width-0-label": "განიერი",
+	"vector-feature-limited-width-1-label": "სტანდარტული",
+	"vector-feature-custom-font-size-0-label": "პატარა",
+	"vector-feature-custom-font-size-1-label": "სტანდარტული",
+	"vector-feature-custom-font-size-2-label": " დიდი",
 	"vector-search-loader": "იტვირთვება ძიების შეთავაზებები",
 	"vector-searchsuggest-containing": "იმ გვერდების მოძებნა, რომლებიც შეიცავენ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>-ს",
 	"vector-intro-page": "ვიკიპედია:კეთილი იყოს თქვენი მობრძანება",
@@ -71,13 +79,10 @@
 	"vector-prefs-limited-width": "შეზღუდული სიგანის რეჟიმის ჩართვა",
 	"vector-prefs-limited-width-help": "ჩართეთ შეზღუდული სიგანის რეჟიმი გაუმჯობესებული კითხვის ხედის ცდისთვის.",
 	"empty-language-selector-body": "გვერდი სხვა ენებზე არ არის ხელმისაწვდომი.",
-	"vector-readability-survey-title": "კითხვადობის ხარისხის გაზრდის პროტოტიპი",
-	"vector-readability-survey-description": "როგორ გამოიყურება თქვენთვის საუკეთესოდ ტექსტი ვიკიპედიაში? გამოიყენეთ ქვემოთ მოცემული გადამრთველები იერსახის დასარეგულირებლად. გაიგეთ მეტი [[mw:Special:MyLanguage/Reading/Web/Accessibility for reading|წაკითხვის ხელმისაწვდომობის პროექტის]] შესახებ.",
-	"vector-readability-survey-fontSize": "შრიფტის ზომა",
-	"vector-readability-survey-lineHeight": "ხაზის სიმაღლე",
-	"vector-readability-survey-paragraphSpacing": "აბზაცებს შორის დაშორება",
-	"vector-readability-survey-optout": "დააჭირეთ გაგრძელებას, რათა გამოგვიგზავნოთ თქვენი დიზაინი და გამოაქვეყნეთ თქვენი გამოხმაურება შემდეგ გვერდზე. [[#close-vector-survey|დააწკაპუნეთ აქ ამ ხელსაწყოს გამოსართავად]].",
-	"vector-readability-survey-randomize": "რანდომიზება",
-	"vector-readability-survey-reset": "გადატვირთვა",
-	"vector-readability-survey-share": "გაგრძელება"
+	"vector-toc-unpinned-popup": "სარჩევი აქ გადმოვიდა.",
+	"vector-page-tools-unpinned-popup": "ხელსაწყოების მენიუ აქ გადმოვიდა.",
+	"vector-main-menu-unpinned-popup": "მთავარი მენიუ აქ გადმოვიდა.",
+	"vector-client-prefs-unpinned-popup": "იერსახის მენიუ აქ გადმოვიდა.",
+	"vector-2022-beta-preview-label": "წაკითხვის ხელმისაწვდომობა (ვექტორული 2022)",
+	"vector-2022-beta-preview-description": "ვექტორული იერსახის (2022) წაკითხვის ხელმისაწვდომობის ახალ ფუნქციებზე ადრეული წვდომის მიღება. ამ ფუნქციებს შორისაა ტიპოგრაფიის გაუმჯობესებები და ბნელი რეჟიმი."
 }

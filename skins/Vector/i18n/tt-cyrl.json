@@ -3,6 +3,7 @@
 		"authors": [
 			"Derslek",
 			"Don Alessandro",
+			"Mansur",
 			"Rinatus",
 			"Ерней",
 			"З. ӘЙЛЕ",
@@ -36,6 +37,7 @@
 	"vector-jumptosearch": "Эзләүгә күчү",
 	"vector-jumptocontent": "Эчтәлеккә күчү",
 	"vector-more-actions": "Тагын",
+	"vector-feature-custom-font-size-2-label": "Зур",
 	"vector-searchsuggest-containing": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ны үз эченә алган битләрне эзләү",
 	"vector-intro-page": "Help:Кереш",
 	"vector-toc-label": "Эчтәлек",
@@ -48,5 +50,7 @@
 	"vector-page-tools-general-label": "Гомуми",
 	"vector-page-tools-actions-label": "Гамәлләр",
 	"vector-unpin-element-label": "яшерү",
-	"empty-language-selector-body": "Битнең эчтәлекләре башка телләрдә бирелми."
+	"empty-language-selector-body": "Битнең эчтәлекләре башка телләрдә бирелми.",
+	"vector-2022-beta-preview-label": "Vector 2022 бета",
+	"vector-2022-beta-preview-description": "Vector 2022 яңа мөмкинлекләрен алдан карап чыгу."
 }

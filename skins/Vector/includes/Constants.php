@@ -231,28 +231,6 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const FEATURE_ZEBRA_DESIGN = 'ZebraDesign';
-
-	/**
-	 * @var string
-	 */
-	public const REQUIREMENT_ZEBRA_DESIGN = 'ZebraDesign';
-
-	/**
-	 * @var string
-	 */
-	public const CONFIG_ZEBRA_DESIGN = 'VectorZebraDesign';
-
-	/**
-	 * Requirement that checks the value of ABTestEnrollment.
-	 *
-	 * @var string
-	 */
-	public const REQUIREMENT_ZEBRA_AB_TEST = 'VectorZebraDesign';
-
-	/**
-	 * @var string
-	 */
 	public const PREF_KEY_FONT_SIZE = 'vector-font-size';
 
 	/**
@@ -273,17 +251,17 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const PREF_KEY_TYPOGRAPHY_SURVEY = 'vector-typography-survey';
+	public const FEATURE_CLIENT_PREFS_PINNED = 'ClientPrefsPinned';
 
 	/**
 	 * @var string
 	 */
-	public const FEATURE_TYPOGRAPHY_SURVEY = 'TypographySurvey';
+	public const REQUIREMENT_CLIENT_PREFS_PINNED = 'ClientPrefsPinned';
 
 	/**
 	 * @var string
 	 */
-	public const REQUIREMENT_TYPOGRAPHY_SURVEY = 'TypographySurvey';
+	public const PREF_KEY_CLIENT_PREFS_PINNED = 'vector-client-prefs-pinned';
 
 	/**
 	 * @var string
@@ -294,6 +272,18 @@ final class Constants {
 	 * @var string
 	 */
 	public const REQUIREMENT_CLIENT_PREFERENCES = 'ClientPreferences';
+
+	/**
+	 * @var string
+	 */
+	public const VECTOR_2022_BETA_KEY = 'vector-2022-beta-feature';
+
+	/**
+	 * @var array
+	 */
+	public const VECTOR_BETA_FEATURES = [
+		self::CONFIG_KEY_CLIENT_PREFERENCES,
+	];
 
 	/**
 	 * This class is for namespacing constants only. Forbid construction.

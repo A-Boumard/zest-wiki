@@ -3,9 +3,9 @@
 		"authors": [
 			"Boulaur",
 			"Cedric31",
-			"Quentí",
+			"Lhanars",
 			"Nicolas Eynaud",
-			"Lhanars"
+			"Quentí"
 		]
 	},
 	"skinname-vector": "Vector (version 2010)",
@@ -40,5 +40,7 @@
 	"vector-page-tools-general-label": "Generau",
 	"vector-pin-element-label": "mòu a la barra laterala",
 	"vector-unpin-element-label": "Escondre",
-	"empty-language-selector-body": "Lo contengut de la pagina non es disponibla dins una autra lenga."
+	"empty-language-selector-body": "Lo contengut de la pagina non es disponibla dins una autra lenga.",
+	"vector-page-tools-unpinned-popup": "Lo menut d'aisinas s'es desplaçat aquí.",
+	"vector-main-menu-unpinned-popup": "Lo menut principal s'es desplaçat aquí."
 }

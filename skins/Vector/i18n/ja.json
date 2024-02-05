@@ -20,14 +20,15 @@
 			"Shirayuki",
 			"Sou0012",
 			"Takot",
+			"Tar Lócesilion",
 			"Tmv",
 			"Whym",
 			"Yusuke1109",
 			"しぃ",
 			"ひまり",
 			"春春眠眠",
-			"青子守歌",
-			"Tar Lócesilion"
+			"翻訳者a",
+			"青子守歌"
 		]
 	},
 	"skinname-vector": "レガシー ベクター (2010年版)",
@@ -62,7 +63,10 @@
 	"vector-jumptosearch": "検索に移動",
 	"vector-jumptocontent": "コンテンツにスキップ",
 	"vector-more-actions": "その他",
-	"vector-client-preferences": "閲覧の設定",
+	"vector-client-prefs-label": "表示",
+	"vector-feature-custom-font-size-name": "テキスト",
+	"vector-feature-custom-font-size-0-label": "小",
+	"vector-feature-custom-font-size-1-label": "標準",
 	"vector-search-loader": "検索候補を読み込んでいます",
 	"vector-searchsuggest-containing": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>を含むページを検索する",
 	"vector-intro-page": "Help:はじめに",
@@ -93,14 +97,5 @@
 	"empty-language-selector-body": "ページのコンテンツが他言語でサポートされていません。",
 	"vector-toc-unpinned-popup": "目次はここに移動しました。",
 	"vector-page-tools-unpinned-popup": "ツールメニューはここに移動しました。",
-	"vector-main-menu-unpinned-popup": "メインメニューはここに移動しました。",
-	"vector-readability-survey-title": "読みやすさの変更の試作版",
-	"vector-readability-survey-description": "ウィキペディアのテキストは、どのようにすればあなたにとって最も見やすくなりますか? 下のスライダーを使用して外観を調整してください。詳細は[[mw:Special:MyLanguage/Reading/Web/Accessibility for reading|閲覧用アクセシビリティ プロジェクト]]を参照してください。",
-	"vector-readability-survey-fontSize": "フォント サイズ",
-	"vector-readability-survey-lineHeight": "行の高さ",
-	"vector-readability-survey-paragraphSpacing": "段落の間隔",
-	"vector-readability-survey-optout": "続行を押して、デザインを送信してフィードバックを次のページで公開してください。[[#close-vector-survey|このツールを除去するにはこちらをクリックしてください。]]",
-	"vector-readability-survey-randomize": "無作為",
-	"vector-readability-survey-reset": "リセット",
-	"vector-readability-survey-share": "次へ"
+	"vector-main-menu-unpinned-popup": "メインメニューはここに移動しました。"
 }
